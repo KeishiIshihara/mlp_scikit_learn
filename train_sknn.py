@@ -11,7 +11,7 @@ from sklearn.metrics import accuracy_score, precision_score, recall_score
 from load_csv_data import load_data
 from sknn.mlp import Classifier, Layer
 
-X_train, X_test, y_train, y_test = load_data()
+X_train, X_test, y_train, y_test = load_data(test_size=0.1)
 
 clf = Classifier(
     layers=[

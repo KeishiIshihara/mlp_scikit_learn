@@ -10,7 +10,7 @@ from sklearn.model_selection import train_test_split
 import numpy as np
 import csv
 
-def load_data(base_dir='./', filename='breast-cancer-wisconsin.data.txt'):
+def load_data(base_dir='./', filename='breast-cancer-wisconsin.data.txt', test_size=0.2):
     print('Now loading json files..')
     data = []
     with open(base_dir+filename) as f:
@@ -26,7 +26,7 @@ def load_data(base_dir='./', filename='breast-cancer-wisconsin.data.txt'):
     # train_target_split
     target = data[:,data.shape[1]-1:] 
     data = data[:,:data.shape[1]-1]
-    x_train, x_test, y_train, y_test = train_test_split(data, target, test_size=0.3, random_state=0)
+    x_train, x_test, y_train, y_test = train_test_split(data, target, test_size=test_size, random_state=0)
 
     print('data size:')
     print('  - (x_train, y_train) = ({}, {})'.format(len(x_train), len(y_train)))
