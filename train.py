@@ -1,7 +1,7 @@
 # coding: utf-8
 #======================================
 #  Breast cancer tumor classification
-# 
+#  with sklearn MLPClassifier module
 #   (c) Keishi Ishihara
 #======================================
 from __future__ import print_function
@@ -12,6 +12,7 @@ from load_csv_data import load_data
 
 
 X_train, X_test, y_train, y_test = load_data()
+
 clf = MLPClassifier(hidden_layer_sizes=(30),
                     activation='relu',
                     alpha=1e-5,
@@ -24,8 +25,6 @@ clf = MLPClassifier(hidden_layer_sizes=(30),
                     max_iter=10000)
 
 clf.fit(X_train, y_train)
-
-predict = clf.predict(X_test)
 
 print ('Training set score: {}'.format(clf.score(X_train, y_train)))
 print ('Test set score: {}'.format(clf.score(X_test, y_test)))
