@@ -13,14 +13,15 @@ from sklearn.metrics import accuracy_score, precision_score, recall_score
 from load_csv_data import load_data
 from sknn.mlp import Classifier, Layer
 
+# configurations
 num_of_trials = 10
 test_size = 0.1
+iteration = 25
 units = [5,10,15,20,25,30]
-# units = [5,10,15] # for debug
 
 # load data
 X_train, X_test, y_train, y_test = load_data(test_size=test_size)
-
+# arrays for storing results
 scores_train = [[] for i in range(num_of_trials)]
 scores_test = [[] for i in range(num_of_trials)]
 
@@ -32,7 +33,7 @@ for n in range(num_of_trials):
                 Layer('Rectifier', units=unit),
                 Layer("Softmax")],
             learning_rate=0.001,
-            n_iter=100)
+            n_iter=iteration)
 
         clf.fit(X_train, y_train)
 
@@ -73,7 +74,7 @@ ax.grid(which='both')
 ax.set_title('Score (train:test={}:{}, Trials={})'.format(1.-test_size,test_size,num_of_trials))
 ax.set_xlabel('units')
 ax.set_ylabel('accuracy')
-fig.savefig('training_result_testsize-{}.png'.format(test_size))
+fig.savefig('training_result_testsize-{}_ite-{}.png'.format(test_size,iteration))
 print('line1:',line1)
 print('line2:',line2)
 plt.close()
@@ -83,7 +84,7 @@ import csv
 header = ['index','5','10','15','20','25','30']
 index = ['train','test']
 
-with open('result_table_testsize-{}.csv'.format(test_size),'w') as f:
+with open('result_table_testsize-{}_ite-{}csv'.format(test_size,iteration),'w') as f:
     writer = csv.writer(f, lineterminator='\n')
     writer.writerow(header)
     writer.writerow(['train']+average_train.tolist())
