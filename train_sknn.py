@@ -84,7 +84,7 @@ import csv
 header = ['index','5','10','15','20','25','30']
 index = ['train','test']
 
-with open('result_table_testsize-{}_ite-{}csv'.format(test_size,iteration),'w') as f:
+with open('result_table_testsize-{}_ite-{}.csv'.format(test_size,iteration),'w') as f:
     writer = csv.writer(f, lineterminator='\n')
     writer.writerow(header)
     writer.writerow(['train']+average_train.tolist())
