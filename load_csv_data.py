@@ -1,9 +1,9 @@
 # coding: utf-8
 #==========================
 #  load data from csv
-#  (c) Keishi Ishihara
+#
+#   (c) Keishi Ishihara
 #==========================
-
 from __future__ import print_function
 
 from sklearn.model_selection import train_test_split
@@ -26,15 +26,11 @@ def load_data(base_dir='./', filename='breast-cancer-wisconsin.data.txt'):
     # train_target_split
     target = data[:,data.shape[1]-1:] 
     data = data[:,:data.shape[1]-1]
-    x_train, x_test, y_train, y_test = train_test_split(data, target, test_size=0.2, random_state=0)
+    x_train, x_test, y_train, y_test = train_test_split(data, target, test_size=0.3, random_state=0)
 
     print('data size:')
     print('  - (x_train, y_train) = ({}, {})'.format(len(x_train), len(y_train)))
     print('  - (x_test, y_test) = ({}, {})'.format(len(x_test), len(y_test)))
-
-    ## reshape?
-    # print(y_train.shape)
-    # y_train = y_train.reshape([1,559])
 
     return x_train, x_test, y_train, y_test
 
