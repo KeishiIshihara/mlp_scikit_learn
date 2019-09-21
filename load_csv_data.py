@@ -11,7 +11,7 @@ import numpy as np
 import csv
 
 def load_data(base_dir='./', filename='breast-cancer-wisconsin.data.txt', test_size=0.2):
-    print('Now loading json files..')
+    print('Now loading csv files..')
     data = []
     with open(base_dir+filename) as f:
         line = csv.reader(f)
@@ -31,7 +31,8 @@ def load_data(base_dir='./', filename='breast-cancer-wisconsin.data.txt', test_s
     print('data size:')
     print('  - (x_train, y_train) = ({}, {})'.format(len(x_train), len(y_train)))
     print('  - (x_test, y_test) = ({}, {})'.format(len(x_test), len(y_test)))
-
+    print('  - test_size={}'.format(test_size))
+    
     return x_train, x_test, y_train, y_test
 
 if __name__=='__main__':
