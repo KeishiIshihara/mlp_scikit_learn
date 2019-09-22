@@ -16,9 +16,9 @@ from sknn.mlp import Classifier, Layer
 from layers import myLayers
 
 # configurations # default
-num_of_trials = 5  #5
+num_of_trials = 10  #5
 num_of_layers = 10  #10
-test_size = 0.1  #0.2
+test_size = 0.2  #0.2
 iteration = 25  #25
 learning_rate = 0.001  #0.001
 units = 10  #10
@@ -39,18 +39,18 @@ for l in range(num_of_layers):
     print('========== Num of layers: {} ========='.format(l+1))
     for t in range(num_of_trials):
         print('---- Trial: {} ----'.format(t+1))
+        # define model, set params
         clf = Classifier(
             layers=layers_list[l],
             learning_rate=learning_rate,
             n_iter=iteration)
 
-        clf.fit(X_train, y_train)
-
+        clf.fit(X_train, y_train) # trian
+        # store result
         scores_train[l][t] = clf.score(X_train, y_train)
         scores_test[l][t] = clf.score(X_test, y_test)
         print ('  - Training set score: {}'.format(scores_train[l][t]))
         print ('  - Test set score: {}'.format(scores_test[l][t]))
-
 
 scores_train = np.array(scores_train)
 scores_test = np.array(scores_test)
@@ -58,7 +58,6 @@ print('')
 print('# Sammary')
 print('train:', scores_train)
 print('test:', scores_test)
-
 average_train = np.sum(scores_train, axis=1) / float(num_of_trials)
 average_test = np.sum(scores_test, axis=1)/ float(num_of_trials)
 print ('average_train:', average_train) # suppose to be 1xlayers
@@ -70,8 +69,8 @@ fig = plt.figure() # Initialize Figure
 ax = fig.add_subplot(1,1,1) # make axes
 x_axis = np.arange(1,num_of_layers+1)
 for i in range(num_of_trials): # draw all result with light color
-    ax.plot(x_axis, scores_train.T[i], color='blue', linestyle='--', linewidth=0.2) # linestyle is not working
-    ax.plot(x_axis, scores_test.T[i],color='orange', linestyle='--', linewidth=0.5)
+    ax.plot(x_axis, scores_train.T[i], color='blue', linestyle='--', linewidth=0.2)
+    ax.plot(x_axis, scores_test.T[i],color='orange', linestyle='--', linewidth=0.3)
 
 line1, = ax.plot(x_axis, average_train, color='blue', label='Average score of training')
 line2, = ax.plot(x_axis, average_test, color='orange', label='Average score of training')
@@ -79,10 +78,10 @@ ax.legend(loc='best') # add legend
 ax.set_xticks(range(x_axis[0],x_axis[-1]+1,1))
 ax.set_xticklabels(x_axis)
 ax.grid(which='both')
-ax.set_title('Score (train:test={}:{}, Trials={})'.format(1.-test_size,test_size,num_of_trials))
-ax.set_xlabel('number of layers')
-ax.set_ylabel('accuracy')
-fig.savefig('results_for_layers/test_result_fig_testsize-{}_ite-{}.png'.format(test_size,iteration))
+ax.set_title('Num of Layers (train:test={}:{}, Trials={})'.format(1.-test_size,test_size,num_of_trials))
+ax.set_xlabel('Number of layers')
+ax.set_ylabel('Accuracy')
+fig.savefig('results_for_layers/result_fig_testsize-{}_ite-{}.png'.format(test_size,iteration))
 plt.close()
 
 
