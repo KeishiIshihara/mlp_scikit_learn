@@ -5,7 +5,7 @@
 #
 #   Train with 2 hidden layers 10 neurons each (fix),
 #   adopt 3 different activation function:
-#   Rectifier(relu), Sigmoid, Tanh, ExpLin
+#   Rectifier(relu), Sigmoid, Tanh
 #
 #   (c) Keishi Ishihara
 #======================================================

@@ -19,11 +19,13 @@ This repository is made for myself to better understand scikit-learn, scikit-neu
 - `trial_for_dropouts.py`:
     - train with 0% to 40% dropout rate for each layer where are 4 hidden layers 10 nodes (10 trials for each rate)
 
+- `trial_for_activations.py`:
+    - train with 3 activation functions: Rectifier(relu), Sigmoid, Tanh (10 trials each) and evaluate them
 
 ---
 #### Reference
 - [scikit-neuralnetwork](https://scikit-neuralnetwork.readthedocs.io/en/latest/module_mlp.html#layer-specifications)
-
+- [matplotlib](https://matplotlib.org/contents.html)
 #### Troubleshooting
 - sklearn.cross_validation
     - [ImportError: No module named 'sklearn.cross_validation'の対処](https://www.haya-programming.com/entry/2018/12/04/052713)
