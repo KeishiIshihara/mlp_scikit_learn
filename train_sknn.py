@@ -16,7 +16,7 @@ from sknn.mlp import Classifier, Layer
 
 # configurations # default
 num_of_trials = 10  #10
-test_size = 0.3  #0.2
+test_size = 0.2  #0.2
 iteration = 25  #25
 learning_rate = 0.001  #0.001
 units = [5,10,15,20,25,30]
@@ -81,7 +81,7 @@ plt.close()
 
 
 import csv
-header = ['index','5','10','15','20','25','30']
+header = ['index']+units
 with open('results_for_units/result_table_testsize-{}_ite-{}.csv'.format(test_size,iteration),'w') as f:
     writer = csv.writer(f, lineterminator='\n')
     writer.writerow(header)
