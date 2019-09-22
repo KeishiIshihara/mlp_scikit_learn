@@ -1,11 +1,12 @@
 # coding: utf-8
-#======================================
+#=============================================
 #  Breast cancer tumor classification
-#  with sknn.mlp Classifier module
-#  (python2)
+#  with sknn.mlp Classifier module  (python2)
+#
+#   Train with one layer with nodes (5,10,..,30)
 #
 #   (c) Keishi Ishihara
-#======================================
+#=============================================
 from __future__ import print_function
 
 import numpy as np
@@ -13,10 +14,11 @@ from sklearn.metrics import accuracy_score, precision_score, recall_score
 from load_csv_data import load_data
 from sknn.mlp import Classifier, Layer
 
-# configurations
-num_of_trials = 10
-test_size = 0.1
-iteration = 25
+# configurations # default
+num_of_trials = 10  #10
+test_size = 0.3  #0.2
+iteration = 25  #25
+learning_rate = 0.001  #0.001
 units = [5,10,15,20,25,30]
 
 # load data
@@ -32,7 +34,7 @@ for n in range(num_of_trials):
             layers=[
                 Layer('Rectifier', units=unit),
                 Layer("Softmax")],
-            learning_rate=0.001,
+            learning_rate=learning_rate,
             n_iter=iteration)
 
         clf.fit(X_train, y_train)
@@ -56,8 +58,6 @@ average_test = np.sum(scores_test, axis=0) / float(num_of_trials)
 
 
 import matplotlib.pyplot as plt
-
-# fig = plt.figure(figsize=(8, 5)) # Initialize Figure
 fig = plt.figure() # Initialize Figure
 ax = fig.add_subplot(1,1,1) # make axes
 
@@ -74,7 +74,7 @@ ax.grid(which='both')
 ax.set_title('Score (train:test={}:{}, Trials={})'.format(1.-test_size,test_size,num_of_trials))
 ax.set_xlabel('units')
 ax.set_ylabel('accuracy')
-fig.savefig('training_result_testsize-{}_ite-{}.png'.format(test_size,iteration))
+fig.savefig('results_for_units/result_fig_testsize-{}_ite-{}.png'.format(test_size,iteration))
 print('line1:',line1)
 print('line2:',line2)
 plt.close()
@@ -82,9 +82,8 @@ plt.close()
 
 import csv
 header = ['index','5','10','15','20','25','30']
-index = ['train','test']
 
-with open('result_table_testsize-{}_ite-{}.csv'.format(test_size,iteration),'w') as f:
+with open('results_for_units/result_table_testsize-{}_ite-{}.csv'.format(test_size,iteration),'w') as f:
     writer = csv.writer(f, lineterminator='\n')
     writer.writerow(header)
     writer.writerow(['train']+average_train.tolist())
