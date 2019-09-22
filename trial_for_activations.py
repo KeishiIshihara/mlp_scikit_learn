@@ -18,7 +18,7 @@ from sknn.mlp import Classifier, Layer
 from activations import ActivationLayers
 
 # configurations # example
-num_of_trials = 3  #5
+num_of_trials = 10  #5
 test_size = 0.2  #0.2
 iteration = 25  #25
 learning_rate = 0.001  #0.001
@@ -48,8 +48,8 @@ for i, activation in enumerate(activation_list):
             layers=ay.get_layers(),
             learning_rate=learning_rate,
             n_iter=iteration)
-
-        clf.fit(X_train, y_train) # train
+        # train
+        clf.fit(X_train, y_train)
         # evaluate
         scores_train[i][t] = clf.score(X_train, y_train)
         scores_test[i][t] = clf.score(X_test, y_test)

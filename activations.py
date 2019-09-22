@@ -2,7 +2,7 @@
 # This class defines list of layers
 # where activation function are different
 #=============================================
-
+from __future__ import print_function
 from sknn.mlp import Layer
 
 class ActivationLayers(object):
@@ -14,7 +14,7 @@ class ActivationLayers(object):
         if not activation in self.activations_list:
             print('Selected activation is not valid.')
             return False
-
+        print('* Activation func is now set as: ',activation)
         # fix with 4 hidden layers 10 neurons
         self.layers = [Layer(activation, units=self.units), 
                        Layer(activation, units=self.units),
