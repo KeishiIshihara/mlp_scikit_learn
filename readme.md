@@ -2,7 +2,7 @@
 
 This repository is made for myself to better understand scikit-learn, scikit-neuralnetwork and multi-layer perceptron.
 
-### requirement
+### Requirements
 - scikit-learn: Version 0.19.0
 - scikit-neuralnetwork: Version 0.7
 
