@@ -10,7 +10,7 @@ This repository is made for myself to better understand scikit-learn, scikit-neu
 - module: scikit-learm
 - sklearn.neural_network.MLPClassifier
 
-## train_sknn.py
+## trial_for_neurons.py
 - module: scikit-neuralnetwork
     - pros: dropout is avairable for each layer
 - sknn.mlp.Classifier
